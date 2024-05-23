@@ -6,8 +6,9 @@ module Microsoft
       def call(body, method:)
         return nil unless Microsoft::Graph::BODY_METHODS.include?(method)
         return nil unless body
+        return body unless body.is_a?(Hash)
 
-        body.transform_keys(&method(:camelize))
+        body.transform_keys(&method(:camelize)).to_json
       end
 
       private
