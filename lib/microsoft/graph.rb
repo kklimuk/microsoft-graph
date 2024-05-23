@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "httparty"
+require "ostruct"
 require "securerandom"
 require_relative "graph/version"
 require_relative "graph/batch"
@@ -51,7 +52,7 @@ module Microsoft
         url,
         headers: headers,
         query: params,
-        body: @body_formatter.call(body, method: method).to_json,
+        body: @body_formatter.call(body, method: method),
         parser: InstanceParser
       )
 
